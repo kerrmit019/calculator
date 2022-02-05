@@ -70,7 +70,7 @@ function operate(operator, x, y) {
 // console.log(operate(divide, 2, 4)); // 0.5
 // console.log(operate(divide, 2, 0)); // Division by 0!
 
-// TODO Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
+// Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
 
 // add eventlisteners to store and display value on each press of a number button
 
@@ -85,8 +85,18 @@ function getDisplayValue(e) {
 }
 
 function updateDisplay(displayValue) {
+  // limit to 9 places
+  if (display.textContent.length >= 9) {
+    console.log("nine");
+    return;
+  }
   // clear initial placeholder "0"
   display.textContent !== "0"
     ? (display.textContent += displayValue)
     : (display.textContent = displayValue);
 }
+
+// TODO Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
+
+// TODO You should already have the code that can populate the display, so once operate() has been called, update the display with the ‘solution’ to the operation.
+//   - This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with them. Don’t feel bad if it takes you a while to figure out the logic.
