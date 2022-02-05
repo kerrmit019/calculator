@@ -1,4 +1,7 @@
-// - Your calculator is going to contain functions
+const darkGreyButtons = document.querySelectorAll(".dark-grey-button");
+const display = document.querySelector(".display");
+
+// - Your calculator is going to contain function
 // for all of the basic math operators you typically find on simple calculators,
 // so start by creating functions for the following items
 // and testing them in your browser’s console.
@@ -57,12 +60,33 @@ function operate(operator, x, y) {
 
 // test operate(operator, x, y)
 
-console.log(operate(add, 2, 3)); // 5
-console.log(operate(add, -1, 3)); // 2
-console.log(operate(subtract, 4, 2)); // 2
-console.log(operate(subtract, -1, 3)); // -4
-console.log(operate(multiply, -1, 3)); // -3
-console.log(operate(multiply, 2, 3)); // 6
-console.log(operate(divide, 4, 2)); // 2
-console.log(operate(divide, 2, 4)); // 0.5
-console.log(operate(divide, 2, 0)); // Division by 0!
+// console.log(operate(add, 2, 3)); // 5
+// console.log(operate(add, -1, 3)); // 2
+// console.log(operate(subtract, 4, 2)); // 2
+// console.log(operate(subtract, -1, 3)); // -4
+// console.log(operate(multiply, -1, 3)); // -3
+// console.log(operate(multiply, 2, 3)); // 6
+// console.log(operate(divide, 4, 2)); // 2
+// console.log(operate(divide, 2, 4)); // 0.5
+// console.log(operate(divide, 2, 0)); // Division by 0!
+
+// TODO Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
+
+// add eventlisteners to store and display value on each press of a number button
+
+darkGreyButtons.forEach((darkGreyButton) =>
+  darkGreyButton.addEventListener("click", getDisplayValue)
+);
+
+function getDisplayValue(e) {
+  let displayValue = e.target.textContent;
+  console.log(displayValue);
+  updateDisplay(displayValue);
+}
+
+function updateDisplay(displayValue) {
+  // clear initial placeholder "0"
+  display.textContent !== "0"
+    ? (display.textContent += displayValue)
+    : (display.textContent = displayValue);
+}
