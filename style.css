@@ -20,7 +20,6 @@ header h1 {
 
 .calculator-container {
   width: 420px;
-  height: px;
   display: flex;
   flex-direction: column;
   border: 3px solid;
@@ -38,6 +37,7 @@ header h1 {
   align-items: center;
   justify-content: center;
   padding: 10px 0;
+
   /* flex: auto; */
   /* flex-direction: column; */
 }
@@ -51,6 +51,8 @@ header h1 {
   height: 50px;
   border-radius: 3px;
   border: 0;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .dark-grey-button {
