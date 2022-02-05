@@ -1,4 +1,5 @@
 const largeDisplay = document.querySelector(".large-display");
+const miniDisplay = document.querySelector(".mini-display");
 const darkGreyButtons = document.querySelectorAll(".dark-grey-button");
 const orangeButtons = document.querySelectorAll(".orange-button");
 
@@ -130,6 +131,11 @@ function pushOperatorButton(e) {
   num1 = tempNum;
   readyForNumberTwo = true;
   operatorPressed = true;
+  updateMiniDisplay(`${num1} ${operator} `);
+}
+
+function updateMiniDisplay(displayInput) {
+  miniDisplay.textContent += displayInput;
 }
 
 // TODO Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
