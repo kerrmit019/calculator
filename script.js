@@ -1,5 +1,6 @@
+const largeDisplay = document.querySelector(".large-display");
 const darkGreyButtons = document.querySelectorAll(".dark-grey-button");
-const display = document.querySelector(".display");
+const orangeButtons = document.querySelectorAll(".orange-button");
 
 // - Your calculator is going to contain function
 // for all of the basic math operators you typically find on simple calculators,
@@ -72,28 +73,63 @@ function operate(operator, x, y) {
 
 // Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
 
+// Event Listeners
 // add eventlisteners to store and display value on each press of a number button
-
 darkGreyButtons.forEach((darkGreyButton) =>
-  darkGreyButton.addEventListener("click", getDisplayValue)
+  darkGreyButton.addEventListener("click", getNumberButtonValue)
 );
 
-function getDisplayValue(e) {
-  let displayValue = e.target.textContent;
-  console.log(displayValue);
-  updateDisplay(displayValue);
+// add event listeners to clear large display when orange button is pressed
+// won't be final functionality of these buttons but just testing out clearing the screen
+// not clearing the variables though (that will be for AC)
+orangeButtons.forEach((orangeButton) =>
+  orangeButton.addEventListener("click", pushOperatorButton)
+);
+
+// initialise variables for use in calculator
+let num1;
+let num2;
+let tempNum = 0;
+let numberButtonValue = "";
+let operatorPressed = false;
+let readyForNumberTwo = false;
+
+function getNumberButtonValue(e) {
+  numberButtonValue = e.target.textContent;
+  console.log(numberButtonValue);
+  updateLargeDisplay(numberButtonValue);
 }
 
-function updateDisplay(displayValue) {
+function updateLargeDisplay(numberButtonValue) {
+  //   check if operator was just pushed and we're changing to number two
+  if (readyForNumberTwo) {
+    //  resets display for start of umber 2
+    largeDisplay.textContent = numberButtonValue;
+    readyForNumberTwo = false;
+    return;
+  }
+
   // limit to 9 places
-  if (display.textContent.length >= 9) {
+  if (largeDisplay.textContent.length >= 9) {
     console.log("nine");
     return;
   }
   // clear initial placeholder "0"
-  display.textContent !== "0"
-    ? (display.textContent += displayValue)
-    : (display.textContent = displayValue);
+  largeDisplay.textContent !== "0"
+    ? (largeDisplay.textContent += numberButtonValue)
+    : (largeDisplay.textContent = numberButtonValue);
+
+  //   update tempNum holding convert what is displayed to number
+  tempNum = +largeDisplay.textContent;
+}
+
+function pushOperatorButton(e) {
+  let operator = e.target.textContent;
+  console.log(operator);
+  // update num1 for use in functions later
+  num1 = tempNum;
+  readyForNumberTwo = true;
+  operatorPressed = true;
 }
 
 // TODO Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
