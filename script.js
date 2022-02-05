@@ -104,7 +104,7 @@ function getNumberButtonValue(e) {
 function updateLargeDisplay(numberButtonValue) {
   //   check if operator was just pushed and we're changing to number two
   if (readyForNumberTwo) {
-    //  resets display for start of umber 2
+    //  resets display for start of number 2
     largeDisplay.textContent = numberButtonValue;
     readyForNumberTwo = false;
     return;
@@ -125,6 +125,7 @@ function updateLargeDisplay(numberButtonValue) {
 }
 
 function pushOperatorButton(e) {
+  //   TODO check if ready to equals (e.g. if operator previously pressed or if equals pressed (same outcome actually) - then evaluate and print answer in large display and clear mini display (will put this ina separate function called here I think))
   let operator = e.target.textContent;
   console.log(operator);
   // update num1 for use in functions later
