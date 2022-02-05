@@ -26,6 +26,9 @@ header h1 {
   border: 3px solid;
   border-radius: 5px;
   padding: 10px 5px;
+  font-size: 30px;
+  background-color: #2d3142;
+  /* background-color: #4f5d75; */
 }
 
 .buttons {
@@ -47,16 +50,33 @@ header h1 {
   width: 80px;
   height: 50px;
   border-radius: 3px;
+  border: 0;
+}
+
+.dark-grey-button {
+  background-color: #4d4a5a;
+  color: white;
+}
+
+.grey-button {
+  background-color: #aaa9ac;
+}
+
+.orange-button {
+  background-color: #c27a1d;
+  color: white;
 }
 
 .display {
   height: 80px;
-  border: 2px solid;
-  padding: 5px;
-  margin: 0 36px;
+  padding: 5px 10px;
+  margin: 5px 36px;
   border-radius: 2px;
+  border: none;
   /* justify-content: flex-end; */
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  background-color: #778692c2;
+  color: white;
 }
