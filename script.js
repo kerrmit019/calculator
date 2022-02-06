@@ -1,7 +1,9 @@
 const largeDisplay = document.querySelector(".large-display");
 const miniDisplay = document.querySelector(".mini-display");
 const darkGreyButtons = document.querySelectorAll(".dark-grey-button");
-const orangeButtons = document.querySelectorAll(".orange-button");
+const operatorButtons = document.querySelectorAll(
+  ".orange-button.operator-button"
+);
 
 // - Your calculator is going to contain function
 // for all of the basic math operators you typically find on simple calculators,
@@ -47,13 +49,13 @@ function divide(x, y) {
 //  and then calls one of the above functions on the numbers.
 function operate(operator, x, y) {
   switch (operator) {
-    case add:
+    case "+":
       return add(x, y);
-    case subtract:
+    case "-":
       return subtract(x, y);
-    case multiply:
+    case "x":
       return multiply(x, y);
-    case divide:
+    case "÷":
       return divide(x, y);
     default:
       return "This is the default operator";
@@ -83,7 +85,7 @@ darkGreyButtons.forEach((darkGreyButton) =>
 // add event listeners to clear large display when orange button is pressed
 // won't be final functionality of these buttons but just testing out clearing the screen
 // not clearing the variables though (that will be for AC)
-orangeButtons.forEach((orangeButton) =>
+operatorButtons.forEach((orangeButton) =>
   orangeButton.addEventListener("click", pushOperatorButton)
 );
 
@@ -125,19 +127,32 @@ function updateLargeDisplay(numberButtonValue) {
 }
 
 function pushOperatorButton(e) {
-  //   TODO check if ready to equals (e.g. if operator previously pressed or if equals pressed (same outcome actually) - then evaluate and print answer in large display and clear mini display (will put this ina separate function called here I think))
   let operator = e.target.textContent;
   console.log(operator);
+
+  // TODO save for later for when chaining options together.
+  // if (operatorPressed) {
+  //   readyToEvaluate(previousOperator);
+  // }
+
   // update num1 for use in functions later
   num1 = tempNum;
   readyForNumberTwo = true;
   operatorPressed = true;
-  updateMiniDisplay(`${num1} ${operator} `);
+  // send operator only for
+  updateMiniDisplay(`${operator} `);
 }
 
+// display operator only
 function updateMiniDisplay(displayInput) {
-  miniDisplay.textContent += displayInput;
+  miniDisplay.textContent = displayInput;
 }
+
+//   TODO check if ready to equals (e.g. if operator previously pressed or
+// if equals pressed (same outcome actually) -
+// then evaluate and print answer in large display
+// and clear mini display
+function readyToEvaluate(previousOperator) {}
 
 // TODO Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
 
