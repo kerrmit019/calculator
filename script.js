@@ -4,6 +4,7 @@ const darkGreyButtons = document.querySelectorAll(".dark-grey-button");
 const operatorButtons = document.querySelectorAll(
   ".orange-button.operator-button"
 );
+const equalsButton = document.querySelector("#equals-button");
 
 // - Your calculator is going to contain function
 // for all of the basic math operators you typically find on simple calculators,
@@ -82,17 +83,18 @@ darkGreyButtons.forEach((darkGreyButton) =>
   darkGreyButton.addEventListener("click", getNumberButtonValue)
 );
 
-// add event listeners to clear large display when orange button is pressed
-// won't be final functionality of these buttons but just testing out clearing the screen
-// not clearing the variables though (that will be for AC)
+// add event listeners to save number1 and operator when pushed and clear screen
 operatorButtons.forEach((orangeButton) =>
   orangeButton.addEventListener("click", pushOperatorButton)
 );
+
+equalsButton.addEventListener("click", evaluateExpression);
 
 // initialise variables for use in calculator
 let num1;
 let num2;
 let tempNum = 0;
+let operator;
 let numberButtonValue = "";
 let operatorPressed = false;
 let readyForNumberTwo = false;
@@ -121,13 +123,10 @@ function updateLargeDisplay(numberButtonValue) {
   largeDisplay.textContent !== "0"
     ? (largeDisplay.textContent += numberButtonValue)
     : (largeDisplay.textContent = numberButtonValue);
-
-  //   update tempNum holding convert what is displayed to number
-  tempNum = +largeDisplay.textContent;
 }
 
 function pushOperatorButton(e) {
-  let operator = e.target.textContent;
+  operator = e.target.textContent.trim();
   console.log(operator);
 
   // TODO save for later for when chaining options together.
@@ -136,7 +135,8 @@ function pushOperatorButton(e) {
   // }
 
   // update num1 for use in functions later
-  num1 = tempNum;
+  // read off large display
+  num1 = +largeDisplay.textContent;
   readyForNumberTwo = true;
   operatorPressed = true;
   // send operator only for
@@ -148,13 +148,18 @@ function updateMiniDisplay(displayInput) {
   miniDisplay.textContent = displayInput;
 }
 
-//   TODO check if ready to equals (e.g. if operator previously pressed or
-// if equals pressed (same outcome actually) -
+function evaluateExpression() {
+  // check if num1 and num2 have values (need 2 numbers to evaluate expression)
+  // read num2 from display
+  num2 = +largeDisplay.textContent;
+  if (num1 !== undefined && num2 != undefined) {
+    largeDisplay.textContent = operate(operator, num1, num2);
+  }
+  return;
+}
+
+//   TODO check if ready to equals (e.g. if operator previously pressed
+// and another operator pressed -> chaining commands
 // then evaluate and print answer in large display
 // and clear mini display
 function readyToEvaluate(previousOperator) {}
-
-// TODO Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
-
-// TODO You should already have the code that can populate the display, so once operate() has been called, update the display with the ‘solution’ to the operation.
-//   - This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with them. Don’t feel bad if it takes you a while to figure out the logic.
