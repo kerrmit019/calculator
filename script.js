@@ -155,6 +155,10 @@ function evaluateExpression() {
   if (num1 !== undefined && num2 != undefined) {
     largeDisplay.textContent = operate(operator, num1, num2);
   }
+
+  // TODO need  to do a check so  that
+  //  if this works for repeatedly pushing equals to mimic repeat e.g X2 overagain
+
   return;
 }
 
