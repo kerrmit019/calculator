@@ -59,7 +59,7 @@ function operate(operator, x, y) {
     case "÷":
       return divide(x, y);
     default:
-      return "This is the default operator";
+      return largeDisplay.textContent;
   }
 }
 
@@ -93,7 +93,7 @@ equalsButton.addEventListener("click", evaluateExpression);
 // initialise variables for use in calculator
 let num1;
 let num2;
-let tempNum = 0;
+let tempNum;
 let operator;
 let numberButtonValue = "";
 let operatorPressed = false;
@@ -151,13 +151,21 @@ function updateMiniDisplay(displayInput) {
 function evaluateExpression() {
   // check if num1 and num2 have values (need 2 numbers to evaluate expression)
   // read num2 from display
-  num2 = +largeDisplay.textContent;
-  if (num1 !== undefined && num2 != undefined) {
+  if (operatorPressed) {
+    num2 = +largeDisplay.textContent;
     largeDisplay.textContent = operate(operator, num1, num2);
+    // then num2 becomes held in tempnum for next operation, this will help if = repeatedly pushed to
+    // repeat previous operation e.g x2 to get 3x2 = 6, = 12, = 24 ...
+    tempNum = num2;
+    operatorPressed = false;
+    return;
   }
 
-  // TODO need  to do a check so  that
+  // this will only run if operator not previously pressed again and equals is
   //  if this works for repeatedly pushing equals to mimic repeat e.g X2 overagain
+  num2 = tempNum;
+  num1 = +largeDisplay.textContent;
+  largeDisplay.textContent = operate(operator, num1, num2);
 
   return;
 }
