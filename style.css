@@ -69,7 +69,7 @@ header h1 {
   color: white;
 }
 
-.display {
+.displays-container {
   height: 80px;
   padding: 5px 10px;
   margin: 5px 36px;
@@ -77,8 +77,15 @@ header h1 {
   border: none;
   /* justify-content: flex-end; */
   display: flex;
+  flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
   background-color: #778692c2;
   color: white;
+  overflow: hidden;
+  font-size: 45px;
+}
+
+.mini-display {
+  font-size: 25px;
 }
