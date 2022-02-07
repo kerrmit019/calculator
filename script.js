@@ -172,3 +172,12 @@ function evaluateExpression() {
 
   return;
 }
+
+// TODO round long numbers to fit on screen - avoid overflow
+// TODO set up proper clear
+// TODO set up division by zero better so it clears afterwards
+// TODO fix decimal so can only be pressed once per number input
+// TODO Add in percentage button functionality
+// TODO Add in +/- button functionality
+// TODO Add backspace button to delete errors
+// TODO Add keyboard support
