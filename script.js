@@ -126,20 +126,21 @@ function updateLargeDisplay(numberButtonValue) {
 }
 
 function pushOperatorButton(e) {
+  // if operator previously  pressed and already have number 2  means chaining
+  if (operator) {
+    if (operatorPressed && !readyForNumberTwo) {
+      evaluateExpression();
+    }
+  }
   operator = e.target.textContent.trim();
   console.log(operator);
-
-  // TODO save for later for when chaining options together.
-  // if (operatorPressed) {
-  //   readyToEvaluate(previousOperator);
-  // }
 
   // update num1 for use in functions later
   // read off large display
   num1 = +largeDisplay.textContent;
   readyForNumberTwo = true;
   operatorPressed = true;
-  // send operator only for
+  // send operator only for mini display
   updateMiniDisplay(`${operator} `);
 }
 
@@ -149,9 +150,11 @@ function updateMiniDisplay(displayInput) {
 }
 
 function evaluateExpression() {
-  // check if num1 and num2 have values (need 2 numbers to evaluate expression)
-  // read num2 from display
+  // update mini display with equals sign
+  updateMiniDisplay("=");
+  // check if operator was pressed
   if (operatorPressed) {
+    // read num2 from display
     num2 = +largeDisplay.textContent;
     largeDisplay.textContent = operate(operator, num1, num2);
     // then num2 becomes held in tempnum for next operation, this will help if = repeatedly pushed to
@@ -169,9 +172,3 @@ function evaluateExpression() {
 
   return;
 }
-
-//   TODO check if ready to equals (e.g. if operator previously pressed
-// and another operator pressed -> chaining commands
-// then evaluate and print answer in large display
-// and clear mini display
-function readyToEvaluate(previousOperator) {}
