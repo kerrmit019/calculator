@@ -17,22 +17,22 @@ const equalsButton = document.querySelector("#equals-button");
 //   - divide
 
 function add(x, y) {
-  return x + y;
+  return (x + y).toPrecision(4);
 }
 
 function subtract(x, y) {
-  return x - y;
+  return (x - y).toPrecision(4);
 }
 
 function multiply(x, y) {
-  return x * y;
+  return (x * y).toPrecision(4);
 }
 
 function divide(x, y) {
   if (y === 0) {
     return "Division by 0!";
   }
-  return x / y;
+  return (x / y).toPrecision(4);
 }
 
 // Testing the above functions
