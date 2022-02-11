@@ -133,8 +133,12 @@ function clearData() {
 
 function getNumberButtonValue(e) {
   numberButtonValue = e.target.textContent;
-  console.log(numberButtonValue);
+  // console.log(numberButtonValue);
   updateLargeDisplay(numberButtonValue);
+  // clears '=' from minidisplay after starting second expression
+  if (!readyForNumberTwo && !operatorPressed) {
+    updateMiniDisplay("");
+  }
 }
 
 function updateLargeDisplay(numberButtonValue) {
@@ -146,9 +150,9 @@ function updateLargeDisplay(numberButtonValue) {
     return;
   }
 
-  // limit to 9 places
+  // limit to 9 places in the screen
   if (largeDisplay.textContent.length >= 9) {
-    console.log("nine");
+    // console.log("nine");
     return;
   }
   // clear initial placeholder "0"
@@ -165,7 +169,7 @@ function pushOperatorButton(e) {
     }
   }
   operator = e.target.textContent.trim();
-  console.log(operator);
+  // console.log(operator);
 
   // update num1 for use in functions later
   // read off large display
