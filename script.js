@@ -5,6 +5,7 @@ const operatorButtons = document.querySelectorAll(
   ".orange-button.operator-button"
 );
 const equalsButton = document.querySelector("#equals-button");
+const clearButton = document.querySelector("#clear-button");
 
 // - Your calculator is going to contain function
 // for all of the basic math operators you typically find on simple calculators,
@@ -90,6 +91,8 @@ operatorButtons.forEach((orangeButton) =>
 
 equalsButton.addEventListener("click", evaluateExpression);
 
+clearButton.addEventListener("click", clearData);
+
 // initialise variables for use in calculator
 let num1;
 let num2;
@@ -98,6 +101,21 @@ let operator;
 let numberButtonValue = "";
 let operatorPressed = false;
 let readyForNumberTwo = false;
+
+function clearData() {
+  // reset all variables when AC is pressed
+  num1 = undefined;
+  num2 = undefined;
+  tempNum = undefined;
+  operator = undefined;
+  numberButtonValue = "0";
+  operatorPressed = false;
+  readyForNumberTwo = false;
+  // reset screen to say 0
+  largeDisplay.textContent = "0";
+  // reset mini display to be blank
+  updateMiniDisplay("");
+}
 
 function getNumberButtonValue(e) {
   numberButtonValue = e.target.textContent;
@@ -173,7 +191,6 @@ function evaluateExpression() {
   return;
 }
 
-// TODO round long numbers to fit on screen - avoid overflow
 // TODO set up proper clear
 // TODO set up division by zero better so it clears afterwards
 // TODO fix decimal so can only be pressed once per number input
