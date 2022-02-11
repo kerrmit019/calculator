@@ -193,6 +193,9 @@ function evaluateExpression() {
     // repeat previous operation e.g x2 to get 3x2 = 6, = 12, = 24 ...
     tempNum = num2;
     operatorPressed = false;
+    // get ready for next number to input, because if "=" pushed then more number buttons pressed
+    // previously would just add on to the answer, but we want a new number input
+    readyForNumberTwo = true;
     return;
   }
 
