@@ -18,22 +18,36 @@ const clearButton = document.querySelector("#clear-button");
 //   - divide
 
 function add(x, y) {
-  return (x + y).toPrecision(4);
+  let answer = x + y;
+  if (/\./.test(answer)) {
+    return answer.toPrecision(4);
+  } else return answer;
 }
 
 function subtract(x, y) {
-  return (x - y).toPrecision(4);
+  let answer = x - y;
+  if (/\./.test(answer)) {
+    return answer.toPrecision(4);
+  } else return answer;
 }
 
 function multiply(x, y) {
-  return (x * y).toPrecision(4);
+  let answer = x * y;
+  if (/\./.test(answer)) {
+    return answer.toPrecision(4);
+  } else return answer;
 }
 
 function divide(x, y) {
   if (y === 0) {
     return "Division by 0!";
   }
-  return (x / y).toPrecision(4);
+
+  let answer = x / y;
+
+  if (/\./.test(answer)) {
+    return answer.toPrecision(4);
+  } else return answer;
 }
 
 // Testing the above functions
@@ -191,7 +205,6 @@ function evaluateExpression() {
   return;
 }
 
-// TODO set up proper clear
 // TODO set up division by zero better so it clears afterwards
 // TODO fix decimal so can only be pressed once per number input
 // TODO Add in percentage button functionality
