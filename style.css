@@ -11,7 +11,8 @@ body {
 }
 
 main {
-  flex: 1;
+  padding: 25px;
+  /* flex: 1; */
 }
 
 header h1 {
@@ -53,6 +54,10 @@ header h1 {
   border: 0;
   font-weight: bold;
   font-size: 30px;
+}
+
+.buttons button:active {
+  opacity: 80%;
 }
 
 .dark-grey-button {

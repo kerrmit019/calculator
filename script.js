@@ -65,8 +65,8 @@ function divide(x, y) {
 // Create a new function operate that takes an operator and 2 numbers
 //  and then calls one of the above functions on the numbers.
 function operate(operator, x, y) {
-  console.log({ x }, { y });
-  console.log(typeof x);
+  // console.log({ x }, { y });
+  // console.log(typeof x);
 
   //  check for NaN
   // will always be false if NaN
@@ -219,7 +219,7 @@ function evaluateExpression() {
 
   return;
 }
-
+// TODO if decimal pushed and is first number input add 0 in front
 // TODO fix decimal so can only be pressed once per number input
 // TODO Add in percentage button functionality
 // TODO Add in +/- button functionality
