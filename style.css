@@ -12,11 +12,11 @@ body {
 
 main {
   padding: 25px;
-  /* flex: 1; */
+  flex: 1;
 }
 
-header h1 {
-  margin: 60px;
+header {
+  flex: 1;
 }
 
 .calculator-container {
