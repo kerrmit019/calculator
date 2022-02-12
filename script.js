@@ -9,6 +9,7 @@ const clearButton = document.querySelector("#clear-button");
 const decimalButton = document.querySelector("#decimal-button");
 
 const plusMinusButton = document.querySelector("#pos-neg-button");
+const percentageButton = document.querySelector("#percentage-button");
 
 // - Your calculator is going to contain function
 // for all of the basic math operators you typically find on simple calculators,
@@ -120,6 +121,8 @@ clearButton.addEventListener("click", clearData);
 
 plusMinusButton.addEventListener("click", reverseSign);
 
+percentageButton.addEventListener("click", convertToPercentage);
+
 // initialise variables for use in calculator
 let num1;
 let num2;
@@ -145,6 +148,15 @@ function clearData() {
   largeDisplay.textContent = "0";
   // reset mini display to be blank
   updateMiniDisplay("");
+}
+
+function convertToPercentage() {
+  readyForNumberTwo = true;
+  return (largeDisplay.textContent = operate(
+    "x",
+    +largeDisplay.textContent,
+    0.01
+  ));
 }
 
 function reverseSign() {
@@ -261,6 +273,5 @@ function evaluateExpression() {
   return;
 }
 // TODO Add in percentage button functionality
-// TODO Add in +/- button functionality
 // TODO Add backspace button to delete errors
 // TODO Add keyboard support
