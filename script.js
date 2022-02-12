@@ -6,6 +6,7 @@ const operatorButtons = document.querySelectorAll(
 );
 const equalsButton = document.querySelector("#equals-button");
 const clearButton = document.querySelector("#clear-button");
+const decimalButton = document.querySelector("#decimal-button");
 
 // - Your calculator is going to contain function
 // for all of the basic math operators you typically find on simple calculators,
@@ -123,6 +124,7 @@ let operator;
 let numberButtonValue = "";
 let operatorPressed = false;
 let readyForNumberTwo = false;
+let decimalPressed = false;
 
 function clearData() {
   // reset all variables when AC is pressed
@@ -133,6 +135,7 @@ function clearData() {
   numberButtonValue = "0";
   operatorPressed = false;
   readyForNumberTwo = false;
+  decimalPressed = false;
   // reset screen to say 0
   largeDisplay.textContent = "0";
   // reset mini display to be blank
@@ -147,6 +150,19 @@ function getNumberButtonValue(e) {
   if (!readyForNumberTwo && !operatorPressed) {
     updateMiniDisplay("");
   }
+  if (numberButtonValue == ".") {
+    decimalPressed = true;
+    toggleDecimalbutton();
+  }
+}
+
+function toggleDecimalbutton() {
+  if (decimalPressed) {
+    decimalButton.removeEventListener("click", getNumberButtonValue);
+    return;
+  }
+  decimalButton.addEventListener("click", getNumberButtonValue);
+  return;
 }
 
 function updateLargeDisplay(numberButtonValue) {
@@ -154,6 +170,9 @@ function updateLargeDisplay(numberButtonValue) {
   if (readyForNumberTwo) {
     //  resets display for start of number 2
     largeDisplay.textContent = numberButtonValue;
+    // reset decimal press
+    decimalPressed = false;
+    toggleDecimalbutton();
     readyForNumberTwo = false;
     return;
   }
@@ -182,6 +201,8 @@ function pushOperatorButton(e) {
   // update num1 for use in functions later
   // read off large display
   num1 = +largeDisplay.textContent;
+  decimalPressed = false;
+  toggleDecimalbutton();
   readyForNumberTwo = true;
   operatorPressed = true;
   // send operator only for mini display
