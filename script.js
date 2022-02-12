@@ -40,7 +40,8 @@ function multiply(x, y) {
 
 function divide(x, y) {
   if (y === 0) {
-    return "Division by 0!";
+    updateMiniDisplay("Division by 0!");
+    return "Error";
   }
 
   let answer = x / y;
@@ -64,20 +65,27 @@ function divide(x, y) {
 // Create a new function operate that takes an operator and 2 numbers
 //  and then calls one of the above functions on the numbers.
 function operate(operator, x, y) {
-  switch (operator) {
-    case "+":
-      return add(x, y);
-    case "-":
-      return subtract(x, y);
-    case "x":
-      return multiply(x, y);
-    case "÷":
-      return divide(x, y);
-    default:
-      return largeDisplay.textContent;
-  }
-}
+  console.log({ x }, { y });
+  console.log(typeof x);
 
+  //  check for NaN
+  // will always be false if NaN
+  if (x === x && y === y) {
+    switch (operator) {
+      case "+":
+        return add(x, y);
+      case "-":
+        return subtract(x, y);
+      case "x":
+        return multiply(x, y);
+      case "÷":
+        return divide(x, y);
+      default:
+        return largeDisplay.textContent;
+    }
+  }
+  return (largeDisplay.textContent = "Error");
+}
 // test operate(operator, x, y)
 
 // console.log(operate(add, 2, 3)); // 5
@@ -212,7 +220,6 @@ function evaluateExpression() {
   return;
 }
 
-// TODO set up division by zero better so it clears afterwards
 // TODO fix decimal so can only be pressed once per number input
 // TODO Add in percentage button functionality
 // TODO Add in +/- button functionality
