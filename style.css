@@ -1,3 +1,14 @@
+@media (max-width: 450px) {
+  /* no scroll */
+  html,
+  body {
+    overflow: hidden;
+  }
+
+  .calculator-container {
+    width: 400px;
+  }
+}
 body {
   display: flex;
   flex-direction: column;
