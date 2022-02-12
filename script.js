@@ -136,6 +136,7 @@ function clearData() {
   operatorPressed = false;
   readyForNumberTwo = false;
   decimalPressed = false;
+  toggleDecimalbutton();
   // reset screen to say 0
   largeDisplay.textContent = "0";
   // reset mini display to be blank
@@ -150,7 +151,7 @@ function getNumberButtonValue(e) {
   if (!readyForNumberTwo && !operatorPressed) {
     updateMiniDisplay("");
   }
-  if (numberButtonValue == ".") {
+  if (numberButtonValue === ".") {
     decimalPressed = true;
     toggleDecimalbutton();
   }
@@ -170,6 +171,10 @@ function updateLargeDisplay(numberButtonValue) {
   if (readyForNumberTwo) {
     //  resets display for start of number 2
     largeDisplay.textContent = numberButtonValue;
+    if (numberButtonValue === ".") {
+      // add leading zero
+      largeDisplay.textContent = "0.";
+    }
     // reset decimal press
     decimalPressed = false;
     toggleDecimalbutton();
@@ -180,6 +185,12 @@ function updateLargeDisplay(numberButtonValue) {
   // limit to 9 places in the screen
   if (largeDisplay.textContent.length >= 9) {
     // console.log("nine");
+    return;
+  }
+
+  //  if button is decimal and is first button pressed add leading "0"
+  if (largeDisplay.textContent === "0" && numberButtonValue === ".") {
+    largeDisplay.textContent += numberButtonValue;
     return;
   }
   // clear initial placeholder "0"
