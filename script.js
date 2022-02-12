@@ -240,6 +240,8 @@ function evaluateExpression() {
     // get ready for next number to input, because if "=" pushed then more number buttons pressed
     // previously would just add on to the answer, but we want a new number input
     readyForNumberTwo = true;
+    decimalPressed = false;
+    toggleDecimalbutton();
     return;
   }
 
@@ -251,8 +253,6 @@ function evaluateExpression() {
 
   return;
 }
-// TODO if decimal pushed and is first number input add 0 in front
-// TODO fix decimal so can only be pressed once per number input
 // TODO Add in percentage button functionality
 // TODO Add in +/- button functionality
 // TODO Add backspace button to delete errors
