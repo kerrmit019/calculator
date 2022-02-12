@@ -136,8 +136,11 @@ let readyForNumberTwo = false;
 let decimalPressed = false;
 
 function readKeyboardInput(e) {
-  console.log(e.key);
+  // console.log(e.key);
 
+  if (/[\/*\-\+]/.test(e.key)) {
+    pushOperatorButton(e);
+  }
   if (/[0-9\.]/.test(e.key)) {
     // skip over decimal if already pressed
     if (decimalPressed && e.key === ".") {
@@ -251,7 +254,19 @@ function pushOperatorButton(e) {
       evaluateExpression();
     }
   }
-  operator = e.target.textContent.trim();
+
+  // if click
+  if (e.type === "click") {
+    operator = e.target.textContent.trim();
+  } else {
+    if (e.key === "*") {
+      operator = "x";
+    } else if (e.key === "/") {
+      operator = "÷";
+    } else {
+      operator = e.key;
+    }
+  }
   // console.log(operator);
 
   // update num1 for use in functions later
