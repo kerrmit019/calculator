@@ -123,6 +123,8 @@ plusMinusButton.addEventListener("click", reverseSign);
 
 percentageButton.addEventListener("click", convertToPercentage);
 
+document.addEventListener("keypress", readKeyboardInput);
+
 // initialise variables for use in calculator
 let num1;
 let num2;
@@ -132,6 +134,23 @@ let numberButtonValue = "";
 let operatorPressed = false;
 let readyForNumberTwo = false;
 let decimalPressed = false;
+
+function readKeyboardInput(e) {
+  console.log(e.key);
+
+  if (/[0-9\.]/.test(e.key)) {
+    // skip over decimal if already pressed
+    if (decimalPressed && e.key === ".") {
+      return;
+    }
+    getNumberButtonValue(e);
+    return;
+  }
+
+  if (e.key === "Enter") {
+    evaluateExpression();
+  }
+}
 
 function clearData() {
   // reset all variables when AC is pressed
@@ -163,7 +182,13 @@ function reverseSign() {
   return (largeDisplay.textContent = -largeDisplay.textContent);
 }
 function getNumberButtonValue(e) {
-  numberButtonValue = e.target.textContent;
+  // if click event
+  if (e.type === "click") {
+    numberButtonValue = e.target.textContent;
+    // or keyboard event
+  } else {
+    numberButtonValue = e.key;
+  }
   // console.log(numberButtonValue);
   updateLargeDisplay(numberButtonValue);
   // clears '=' from minidisplay after starting second expression
@@ -179,6 +204,7 @@ function getNumberButtonValue(e) {
 function toggleDecimalbutton() {
   if (decimalPressed) {
     decimalButton.removeEventListener("click", getNumberButtonValue);
+
     return;
   }
   decimalButton.addEventListener("click", getNumberButtonValue);
@@ -272,6 +298,5 @@ function evaluateExpression() {
 
   return;
 }
-// TODO Add in percentage button functionality
 // TODO Add backspace button to delete errors
 // TODO Add keyboard support
