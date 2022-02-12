@@ -24,21 +24,24 @@ const percentageButton = document.querySelector("#percentage-button");
 function add(x, y) {
   let answer = x + y;
   if (/\./.test(answer)) {
-    return answer.toPrecision(4);
+    // round but also remove trailing zeroes
+    return parseFloat(answer.toPrecision(9).toString());
   } else return answer;
 }
 
 function subtract(x, y) {
   let answer = x - y;
   if (/\./.test(answer)) {
-    return answer.toPrecision(4);
+    // round but also remove trailing zeroes
+    return parseFloat(answer.toPrecision(9).toString());
   } else return answer;
 }
 
 function multiply(x, y) {
   let answer = x * y;
   if (/\./.test(answer)) {
-    return answer.toPrecision(4);
+    // round but also remove trailing zeroes
+    return parseFloat(answer.toPrecision(9).toString());
   } else return answer;
 }
 
@@ -51,7 +54,8 @@ function divide(x, y) {
   let answer = x / y;
 
   if (/\./.test(answer)) {
-    return answer.toPrecision(4);
+    // round but also remove trailing zeroes
+    return parseFloat(answer.toPrecision(9).toString());
   } else return answer;
 }
 
