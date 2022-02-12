@@ -123,7 +123,7 @@ plusMinusButton.addEventListener("click", reverseSign);
 
 percentageButton.addEventListener("click", convertToPercentage);
 
-document.addEventListener("keypress", readKeyboardInput);
+document.addEventListener("keydown", readKeyboardInput);
 
 // initialise variables for use in calculator
 let num1;
@@ -136,7 +136,21 @@ let readyForNumberTwo = false;
 let decimalPressed = false;
 
 function readKeyboardInput(e) {
-  // console.log(e.key);
+  if (largeDisplay.textContent == "") {
+    largeDisplay.textContent = "0";
+  }
+  console.log(e.key);
+  if (e.key === "Backspace") {
+    console.log(largeDisplay.textContent);
+
+    if (largeDisplay.textContent.length === 1) {
+      // don't clear the screen completely - change to 0.
+      largeDisplay.textContent = "0";
+    }
+    if (largeDisplay.textContent !== "0") {
+      largeDisplay.textContent = largeDisplay.textContent.slice(0, -1);
+    }
+  }
 
   if (/[\/*\-\+]/.test(e.key)) {
     pushOperatorButton(e);
@@ -314,4 +328,3 @@ function evaluateExpression() {
   return;
 }
 // TODO Add backspace button to delete errors
-// TODO Add keyboard support
