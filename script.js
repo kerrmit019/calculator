@@ -139,9 +139,9 @@ function readKeyboardInput(e) {
   if (largeDisplay.textContent == "") {
     largeDisplay.textContent = "0";
   }
-  console.log(e.key);
+  // console.log(e.key);
   if (e.key === "Backspace") {
-    console.log(largeDisplay.textContent);
+    // console.log(largeDisplay.textContent);
 
     if (largeDisplay.textContent.length === 1) {
       // don't clear the screen completely - change to 0.
@@ -155,7 +155,9 @@ function readKeyboardInput(e) {
   if (/[\/*\-\+]/.test(e.key)) {
     pushOperatorButton(e);
   }
-  if (/[0-9\.]/.test(e.key)) {
+
+  // only numeric and ".", excluded function keys F12 etc
+  if (/[0-9\.]/.test(e.key) && !/F/.test(e.key)) {
     // skip over decimal if already pressed
     if (decimalPressed && e.key === ".") {
       return;
