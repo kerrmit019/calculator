@@ -8,6 +8,8 @@ const equalsButton = document.querySelector("#equals-button");
 const clearButton = document.querySelector("#clear-button");
 const decimalButton = document.querySelector("#decimal-button");
 
+const plusMinusButton = document.querySelector("#pos-neg-button");
+
 // - Your calculator is going to contain function
 // for all of the basic math operators you typically find on simple calculators,
 // so start by creating functions for the following items
@@ -116,6 +118,8 @@ equalsButton.addEventListener("click", evaluateExpression);
 
 clearButton.addEventListener("click", clearData);
 
+plusMinusButton.addEventListener("click", reverseSign);
+
 // initialise variables for use in calculator
 let num1;
 let num2;
@@ -143,6 +147,9 @@ function clearData() {
   updateMiniDisplay("");
 }
 
+function reverseSign() {
+  return (largeDisplay.textContent = -largeDisplay.textContent);
+}
 function getNumberButtonValue(e) {
   numberButtonValue = e.target.textContent;
   // console.log(numberButtonValue);
