@@ -327,4 +327,6 @@ function evaluateExpression() {
 
   return;
 }
-// TODO Add backspace button to delete errors
+
+// TODO tidy up rounding
+// TODO tidy code and refactor
