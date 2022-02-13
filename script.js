@@ -154,6 +154,13 @@ function readKeyboardInput(e) {
     if (largeDisplay.textContent !== "0") {
       largeDisplay.textContent = largeDisplay.textContent.slice(0, -1);
     }
+
+    if (!/\./.test(largeDisplay.textContent)) {
+      // also toggle "." button to work again if decimal has been deleted
+      console.log("no decimal");
+      decimalPressed = false;
+      toggleDecimalbutton();
+    }
   }
 
   if (/[\/*\-\+]/.test(e.key)) {
