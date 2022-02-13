@@ -157,7 +157,6 @@ function readKeyboardInput(e) {
 
     if (!/\./.test(largeDisplay.textContent)) {
       // also toggle "." button to work again if decimal has been deleted
-      console.log("no decimal");
       decimalPressed = false;
       toggleDecimalbutton();
     }
@@ -341,5 +340,4 @@ function evaluateExpression() {
   return;
 }
 
-// TODO tidy up rounding
 // TODO tidy code and refactor
