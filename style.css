@@ -4,11 +4,14 @@
   body {
     overflow: hidden;
   }
+}
 
+@media (max-width: 450px), (max-width: 320px) {
   .calculator-container {
-    width: 400px;
+    width: 300px;
   }
 }
+
 body {
   display: flex;
   flex-direction: column;
