@@ -1,5 +1,7 @@
 # Calculator project for The Odin Project
 
+LIVE PREVIEW:
+
 - Basic Functions
 - Addition
 - Subtraction

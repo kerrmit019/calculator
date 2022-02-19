@@ -42,7 +42,6 @@ header {
   padding: 10px 5px;
   font-size: 30px;
   background-color: #2d3142;
-  /* background-color: #4f5d75; */
 }
 
 .buttons {
@@ -52,9 +51,6 @@ header {
   align-items: center;
   justify-content: center;
   padding: 10px 0;
-
-  /* flex: auto; */
-  /* flex-direction: column; */
 }
 
 #zero-button {
@@ -94,7 +90,6 @@ header {
   margin: 5px 36px;
   border-radius: 2px;
   border: none;
-  /* justify-content: flex-end; */
   display: flex;
   flex-direction: column;
   align-items: flex-end;

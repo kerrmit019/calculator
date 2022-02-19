@@ -1,3 +1,9 @@
+/*
+##############
+HTML ELEMENTS
+##############
+*/
+
 const largeDisplay = document.querySelector(".large-display");
 const miniDisplay = document.querySelector(".mini-display");
 const darkGreyButtons = document.querySelectorAll(".dark-grey-button");
@@ -11,16 +17,50 @@ const decimalButton = document.querySelector("#decimal-button");
 const plusMinusButton = document.querySelector("#pos-neg-button");
 const percentageButton = document.querySelector("#percentage-button");
 
-// - Your calculator is going to contain function
-// for all of the basic math operators you typically find on simple calculators,
-// so start by creating functions for the following items
-// and testing them in your browser’s console.
+/* 
+############## 
+Event Listeners
+###############
+*/
 
-//   - add
-//   - subtract
-//   - multiply
-//   - divide
+// Number and Decimal Button Actions
+darkGreyButtons.forEach((darkGreyButton) =>
+  darkGreyButton.addEventListener("click", getNumberButtonValue)
+);
 
+// Operator Buttons - x, ÷, +, -
+operatorButtons.forEach((orangeButton) =>
+  orangeButton.addEventListener("click", pushOperatorButton)
+);
+
+equalsButton.addEventListener("click", evaluateExpression);
+
+clearButton.addEventListener("click", clearData);
+
+plusMinusButton.addEventListener("click", reverseSign);
+
+percentageButton.addEventListener("click", convertToPercentage);
+
+// Keyboard input
+document.addEventListener("keydown", readKeyboardInput);
+
+// initialise variables for use in calculator
+let num1;
+let num2;
+let tempNum;
+let operator;
+let numberButtonValue = "";
+let operatorPressed = false;
+let readyForNumberTwo = false;
+let decimalPressed = false;
+
+/* 
+#################
+Functions
+################
+*/
+
+// Basic functions add, subtract, multiply, and divide.
 function add(x, y) {
   let answer = x + y;
   if (/\./.test(answer)) {
@@ -59,23 +99,9 @@ function divide(x, y) {
   } else return answer;
 }
 
-// Testing the above functions
-// console.log(add(2, 3)); // 5
-// console.log(add(-1, 3)); // 2
-// console.log(subtract(4, 2)); // 2
-// console.log(subtract(-1, 3)); // -4
-// console.log(multiply(-1, 3)); // -3
-// console.log(multiply(2, 3)); // 6
-// console.log(divide(4, 2)); // 2
-// console.log(divide(2, 4)); // 0.5
-// console.log(divide(2, 0)); // Division by 0!
-
-// Create a new function operate that takes an operator and 2 numbers
-//  and then calls one of the above functions on the numbers.
+// Takes an operator and 2 numbers and calls the add, subtract, multiply, and
+// divide functions
 function operate(operator, x, y) {
-  // console.log({ x }, { y });
-  // console.log(typeof x);
-
   //  check for NaN
   // will always be false if NaN
   if (x === x && y === y) {
@@ -94,59 +120,12 @@ function operate(operator, x, y) {
   }
   return (largeDisplay.textContent = "Error");
 }
-// test operate(operator, x, y)
-
-// console.log(operate(add, 2, 3)); // 5
-// console.log(operate(add, -1, 3)); // 2
-// console.log(operate(subtract, 4, 2)); // 2
-// console.log(operate(subtract, -1, 3)); // -4
-// console.log(operate(multiply, -1, 3)); // -3
-// console.log(operate(multiply, 2, 3)); // 6
-// console.log(operate(divide, 4, 2)); // 2
-// console.log(operate(divide, 2, 4)); // 0.5
-// console.log(operate(divide, 2, 0)); // Division by 0!
-
-// Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
-
-// Event Listeners
-// add eventlisteners to store and display value on each press of a number button
-darkGreyButtons.forEach((darkGreyButton) =>
-  darkGreyButton.addEventListener("click", getNumberButtonValue)
-);
-
-// add event listeners to save number1 and operator when pushed and clear screen
-operatorButtons.forEach((orangeButton) =>
-  orangeButton.addEventListener("click", pushOperatorButton)
-);
-
-equalsButton.addEventListener("click", evaluateExpression);
-
-clearButton.addEventListener("click", clearData);
-
-plusMinusButton.addEventListener("click", reverseSign);
-
-percentageButton.addEventListener("click", convertToPercentage);
-
-document.addEventListener("keydown", readKeyboardInput);
-
-// initialise variables for use in calculator
-let num1;
-let num2;
-let tempNum;
-let operator;
-let numberButtonValue = "";
-let operatorPressed = false;
-let readyForNumberTwo = false;
-let decimalPressed = false;
 
 function readKeyboardInput(e) {
   if (largeDisplay.textContent == "") {
     largeDisplay.textContent = "0";
   }
-  // console.log(e.key);
   if (e.key === "Backspace") {
-    // console.log(largeDisplay.textContent);
-
     if (largeDisplay.textContent.length === 1) {
       // don't clear the screen completely - change to 0.
       largeDisplay.textContent = "0";
@@ -210,6 +189,7 @@ function convertToPercentage() {
 function reverseSign() {
   return (largeDisplay.textContent = -largeDisplay.textContent);
 }
+
 function getNumberButtonValue(e) {
   // if click event
   if (e.type === "click") {
@@ -218,7 +198,6 @@ function getNumberButtonValue(e) {
   } else {
     numberButtonValue = e.key;
   }
-  // console.log(numberButtonValue);
   updateLargeDisplay(numberButtonValue);
   // clears '=' from minidisplay after starting second expression
   if (!readyForNumberTwo && !operatorPressed) {
@@ -293,7 +272,6 @@ function pushOperatorButton(e) {
       operator = e.key;
     }
   }
-  // console.log(operator);
 
   // update num1 for use in functions later
   // read off large display
@@ -339,5 +317,3 @@ function evaluateExpression() {
 
   return;
 }
-
-// TODO tidy code and refactor
