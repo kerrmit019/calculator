@@ -1,6 +1,6 @@
 # Calculator project for The Odin Project
 
-LIVE PREVIEW:
+LIVE PREVIEW: https://kerrmit019.github.io/calculator/
 
 - Basic Functions
 - Addition
